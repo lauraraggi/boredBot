@@ -1,8 +1,14 @@
 const container = document.querySelector(".container");
-fetch("https://apis.scrimba.com/bored/api/activity")
-  .then((response) => response.json())
-  .then(({ activity, type, participants, price, link, key, accessibility }) => {
-    container.innerHTML = `<div id="${key}" class="activity">
+const cta = document.querySelector(".btnTrigger");
+
+cta.addEventListener("click", getApi);
+
+function getApi() {
+  fetch("https://apis.scrimba.com/bored/api/activity")
+    .then((response) => response.json())
+    .then(
+      ({ activity, type, participants, price, link, key, accessibility }) => {
+        container.innerHTML = `<div id="${key}" class="activity">
     
   <div class="title">
     <h2 class="activity__title">${activity}</h2>
@@ -14,4 +20,6 @@ fetch("https://apis.scrimba.com/bored/api/activity")
     <div class="price">Price: €${Math.round(price)}</div>
   </div>
 </div>`;
-  });
+      }
+    );
+}
